@@ -27,20 +27,29 @@ View(corona_tweets)
 #preprocessing
 corona_text<- corona_tweets$text
 flu_text<- flu_tweets$text
+
+#convert all text to lower case
 corona_text<- tolower(corona_text)
 flu_text<- tolower(flu_text)
+# Replace blank space (“rt”)
 corona_text <- gsub("rt", "", corona_text)
 flu_text <- gsub("rt", "", flu_text)
+# Replace @UserName
 corona_text <- gsub("@\\w+", "", corona_text)
 flu_text <- gsub("@\\w+", "", flu_text)
+# Remove punctuation
 corona_text <- gsub("[[:punct:]]", "", corona_text)
 flu_text <- gsub("[[:punct:]]", "", flu_text)
+# Remove links
 corona_text <- gsub("http\\w+", "", corona_text)
 flu_text <- gsub("http\\w+", "", flu_text)
+# Remove tabs
 corona_text <- gsub("[ |\t]{2,}", "", corona_text)
 flu_text <- gsub("[ |\t]{2,}", "", flu_text)
+# Remove blank spaces at the beginning
 corona_text <- gsub("^ ", "", corona_text)
 flu_text <- gsub("^ ", "", flu_text)
+# Remove blank spaces at the end
 corona_text <- gsub(" $", "", corona_text)
 flu_text <- gsub(" $", "", flu_text)
 
